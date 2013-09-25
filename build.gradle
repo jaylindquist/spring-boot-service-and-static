@@ -1,0 +1,43 @@
+
+buildscript {
+	repositories {
+		mavenCentral()
+		maven {
+			url "http://repo.springsource.org/milestone"
+		}
+	}
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:0.5.0.M3")
+    }
+}
+
+repositories {
+    mavenCentral()
+	maven {
+		url "http://repo.springsource.org/milestone"
+	}
+}
+
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+apply plugin: 'spring-boot'
+
+sourceCompatibility = 1.6
+version = '1.0'
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.1.5'
+	compile 'org.springframework.boot:spring-boot-starter-web:0.5.0.M3'
+    compile 'org.springframework:spring-jdbc:4.0.0.M3'
+	runtime 'org.codehaus.jackson:jackson-mapper-asl:1.9.12'
+	runtime 'org.hsqldb:hsqldb:latest.release'
+}
+
+task run(type: JavaExec) {
+	classpath configurations.runtime, sourceSets.main.output
+	main = 'com.mycom.App'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.7'
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Ember Template</title>
+<link rel="stylesheet" type="text/css" href="css/normalize.css"/>
+<link rel="stylesheet" type="text/css" href="css/main.css"/>
+</head>
+<body>
+
+<script type="text/x-handlebars">
+    <h1>Franchises</h1>
+    <ul>
+        {{#each franchise in franchises}}
+            <li>{{#linkTo 'franchise' franchise}}{{franchise.title}}{{/linkTo}}</li>
+        {{/each}}
+    </ul>
+
+    {{outlet}}
+</script>
+
+<script type="text/x-handlebars" id="franchise">
+    <h2>{{title}}</h2>
+    <ul>
+        {{#each game in games}}
+        <li>{{#linkTo 'game' game}}{{game.title}}{{/linkTo}}</li>
+        {{/each}}
+    </ul>
+    {{outlet}}
+</script>
+
+<script type="text/x-handlebars" id="game">
+    <dl>
+        <dt>{{title}}</dt>
+        <dd>{{releaseDate}}</dd>
+    </dl>
+</script>
+
+<script src="js/libs/jquery-1.9.1.js"></script>
+<script src="js/libs/handlebars-1.0.0-rc.4.js"></script>
+<script src="js/libs/ember-1.0.0-rc.6.js"></script>
+<script src="js/libs/bootstrap.min.js"></script>
+<script src="js/games.js"></script>
+
+</body>
+</html>
